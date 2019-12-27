@@ -1,6 +1,7 @@
 # bvh2dot
 visualize BVH file skeletons using graphviz
 
+generate dot/graphviz file: `./bvh_skeleton_viz.py [-h] [--outfile OUTFILE] bvhfile`
 generate graph image: `dot -Tpng -o skeleton_tree.png skeleton_tree.gv`
 
 # references
