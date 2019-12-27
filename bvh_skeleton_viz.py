@@ -2,8 +2,15 @@
 """
 generate tree of bones in BVH files
 """
+import argparse
+
+parser = argparse.ArgumentParser(description='create dot (graph) file of skeleton(s) in BVH files')
+parser.add_argument('bvhfile', type=str,
+                    help='BVH file to process')
+args = parser.parse_args()
+
 skeletons = []
-with open("Example1.bvh") as infile:
+with open(args.bvhfile) as infile:
     skeleton = None
     parents = ['none']  # track the (path of) parents)
     level = 0
