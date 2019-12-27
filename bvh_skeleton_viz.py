@@ -7,6 +7,8 @@ import argparse
 parser = argparse.ArgumentParser(description='create dot (graph) file of skeleton(s) in BVH files')
 parser.add_argument('bvhfile', type=str,
                     help='BVH file to process')
+parser.add_argument('--outfile', type=str,
+                    help='output (graphviz) file name')
 args = parser.parse_args()
 
 skeletons = []
@@ -44,7 +46,11 @@ with open(args.bvhfile) as infile:
 
 scounter = 1
 for skeleton in skeletons:
-    fname = "skeleton_tree_{}.gv".format(scounter)
+    fname = None
+    if args.outfile:
+        fname = args.outfile
+    else:
+        fname = "skeleton_tree_{}.gv".format(scounter)
     with open(fname, 'w') as outfile:
         outfile.write("# BVH skelleton visualisation\n")
         outfile.write("# render via: dot -Tpng -o skeleton_tree.png skeleton_tree.gv\n")
